@@ -1,10 +1,5 @@
 import streamlit as st
 from google_auth_oauthlib.flow import Flow
-from streamlit_elements import Elements
-import requests
-from datetime import datetime, timedelta
-import json
-import pandas as pd
 import toml
 
 config = toml.load(".streamlit/secrets.toml")
