@@ -107,19 +107,3 @@ def form_callback(authorization_response):
         bearer_token = f"Bearer {credentials.token}"
         auth_header = {"Authorization": bearer_token}
 
-import pandas_gbq
-import logging
-
-def write_to_bigquery(df, project_id, dataset_id, table_name):
-    try:
-        # Set up the BigQuery credentials
-        credentials = flow.credentials
-        pandas_gbq.context.credentials = credentials
-
-        # Write the DataFrame to BigQuery
-        table_ref = f"{project_id}.{dataset_id}.{table_name}"
-        pandas_gbq.to_gbq(df, table_ref, if_exists="append")
-
-        logging.info(f"Data pushed to table {table_ref}")
-    except Exception as e:
-        logging.error(f"Error pushing data to BigQuery: {e}")
